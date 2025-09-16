@@ -9,5 +9,5 @@ spring:
     show-sql: true
 
 jwt:
-  secret: "supersecretkey1234567890"
+  secret: "3a!fB9vL@xD^PzQ7sK%tH8nM#jE4rT6wYpU2oI5dL0gZcVxNqF^mA8sK!dR4fB7Z"
   expiration: 3600000 # 1h
