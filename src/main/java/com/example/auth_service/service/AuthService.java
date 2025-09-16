@@ -32,9 +32,13 @@ public class AuthService {
 
         userRepository.save(user);
 
-        UserResponse userResponse = new UserResponse(user.getUsername(), user.getRole());
+        UserResponse response = new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getRole()
+        );
 
-        return new ApiResponse<>(true, "User registered successfully", userResponse);
+        return ApiResponse.success("User registered successfully!", response);
     }
 
     public ApiResponse<LoginResponse> login(LoginRequest request) {
@@ -49,8 +53,13 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         String token = jwtUtil.generateToken(user.getUsername());
-        LoginResponse loginResponse = new LoginResponse(token, user.getUsername(), user.getRole());
 
-        return new ApiResponse<>(true, "Login successful", loginResponse);
+        LoginResponse loginResponse = new LoginResponse(
+                token,
+                user.getUsername(),
+                user.getRole()
+        );
+
+        return ApiResponse.success("Login successful", loginResponse);
     }
 }
